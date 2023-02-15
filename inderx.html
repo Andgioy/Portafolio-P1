@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Jost', sans-serif;
+        transition-duration: 300ms;
+        scroll-behavior: smooth;
+    }
+    body {
+
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #000000;
+        color: white
+    }
+
+    header {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+       
+    }
+    header h1 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 4rem;
+        user-select: none;
+
+    }
+
+    header div {
+        display: flex;
+        gap: 10px ;
+    }
+    header div h1:first-child {
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 2px white;
+    }
+
+    header ul {
+        display: flex;
+        align-items: center;
+        grid-gap: 40px;
+        
+    }
+    header ul li {
+        list-style-type: none; 
+        font-size: 0.9cm;
+        user-select: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    header ul li::after {
+        position: absolute;
+        content:'';
+        width: 100%;
+        height: 1px;
+        background: white;
+        right:100%;
+        bottom: 0;
+        transition-duration: 300ms ;
+
+
+    }
+
+    header ul li:hover::after {
+        transform: translateX(100%); 
+
+    }
+
+    header a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    section {
+        min-height: 100vh;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        
+    }
+
+    section:nth-child(2n){
+        background: white;
+        color: black;
+    }
+
+
+    .section-header {
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Jost', sans-serif;
+        position:relative ;
+        padding: 4px 10px;
+        width: 100%;
+        max-width: 85ch;
+        margin: 0 auto;
+
+    }
+    .section-header::before,
+    .section-header::after{
+        position: absolute;
+        content:'';
+        width: 100%;
+        height: 1px;
+        background: rgb(173, 15, 134);
+    }
+     .section-header::before {
+        right: 0;
+        top: 0;
+     }
+     .section-header::after {
+        left: 0;
+        bottom: 0;
+     }
+
+     section:nth-child(2n + 1) .section-header::before,
+     section:nth-child(2n +1) .section-header::after {
+
+        background: white;
+     }
+
+     .section-wrapper{
+        width: 100%;
+        max-width: 75ch;
+        margin: 0 auto;
+        flex: 1;
+        display: flex;
+       /* background: rgb(164, 173, 28) ;*/
+        justify-content: center;
+        align-items: center;
+     }
+
+     .section-content {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-size: 0.8cm;
+        text-align:left;
+     }
+
+     .experience-header {
+        display: flex;
+        flex-direction: column;
+      
+        
+     }
+
+     .experience-header h2 {
+        font-weight: 500;
+     }
+
+     .experience-subheader{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;  
+
+     }
+
+     .resume-item > p {
+        padding: 2px 0;
+        color: aliceblue;
+     }
+     .project-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        width: 100%;
+        
+     }
+
+     .project-item {
+        /*border: 1px solid #0f172a;*/
+        box-shadow: 0 0 4px 2px lightgray;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+
+     }
+
+     .project-item:hover {
+        box-shadow: 0 0 5px 3px darkgray;
+     }
+
+     .project-grid img {
+        width: 100%;
+        object-fit: cover;
+     }
+
+     .img-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to bottom, transparent, #0f172a );
+        padding: 20px 12px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.2cm;
+     }
+     .img-text h3 {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: 'Oswald', sans-serif;
+     }
+
+     .project-links {
+        display: flex;
+        align-items: center;
+        /*grid-template-columns: repeat(2, minmax(0 1fr));*/
+        gap: 2px;
+      
+
+     }
+
+     .project-links a {
+        cursor: pointer;
+        user-select: none;
+        background: #f76d6d;
+        padding: 2px 6px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        text-decoration: none;
+        font-weight: 400;
+        border: 1px solid white;
+
+     }
+
+     .project-links a:hover {
+        transform: scale(1.1);
+     }
+
+     .project-links i {
+        font-size: 0.8em;
+        /*padding: 2px;*/
+     }
+
+     footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        gap: 20px;
+        font-size: 1.2em;
+     }
+
+     footer a {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+     }
+
+     footer a:hover {
+        transform: rotate(-45deg);
+        opacity: 0.5;
+        
+     }
+
+     @media (min-width: 640px){
+        header h1 {
+            font-size: 6em;
+        }
+        header ul {
+            gap: 40px;
+        }
+        .section-header {
+            font-size: 2.4em;
+        }
+        .section-content {
+            font-size: 1em;
+        }
+        
+        .img-text{
+            font-size: 1em;
+        }
+
+        .img-text h {
+            font-size: 1.7em;
+        }
+
+        footer {
+            padding: 20px;
+        }
+        footer a{
+            font-size: 1.3em;
+        }
+     }
+
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div>
+            <h1> A1 </h1>
+            <h1> S2</h1>
+        </div>
+        <ul>
+            <li>
+                <a href="#f3">F3</a>
+            </li>
+
+            <li>
+                <a href="#f4">F4</a>
+            </li>
+
+            <li>
+                <a href="#f5">F5</a>
+            </li>
+
+        </ul>
+    </header>
+        <main>
+          <nav></nav>
+                <section id="f3"> <h2 class="section-header">f123</h2>
+                    <div class="section-wrapper">
+                        <div class="section-content">
+                            <p> I wanna rock I wanna rock I wanna rock I wanna rock I wanna rock  </p>
+                            <p> I wanna rock 2 I wanna rock I wanna rock I wanna rock I wanna rock</p>
+                            <p> I wanna rock 3 I wanna rock I wanna rock I wanna rock I wanna rock</p>
+                        </div>
+                    
+                    </div>
+                
+                </section>
+            <section id="f4"><h2 class="section-header">F345</h2>
+                <div class="section-wrapper">
+                    <div class="section-content">
+                        <div class="resumen-item">
+                            <div class="experience-header">
+                              <h2> full stack development</h2>
+                            <div class="experience-subheader">
+                            <p> I wanna rock  </p>
+                            <p> 12/12  - now  </p>
+                            </div>
+                            </div>
+                            <p> I made too much things in my life </p>
+                        </div>
+
+                        <div class="resumen-item">
+                            <div class="experience-header">
+                             <h2> full struck development</h2>
+                             <div class="experience-subheader">
+                               <p> I wanna rock  </p>
+                               <p> 12/12  - now  </p>
+                             </div>
+                            </div>
+                               <p> I made too much things in my life </p>
+                        </div>
+                        
+                        <div class="resumen-item">
+                            <div class="experience-header">
+                              <h2> full struck development</h2>
+                             <div class="experience-subheader">
+                               <p> I wanna rock  </p>
+                               <p> 12/12  - now  </p>
+                             </div>
+                            </div>
+                            <p> I made too much things in my life </p>
+                        </div>
+                   </div>
+                </div>
+                    
+
+            </section>
+
+
+                <section id="f5"><h2 class="section-header">F567</h2>
+                    <div class="section-wrapper">
+                        <div class="project-grid">
+                            <div class="project-item">
+                                <img src="/public/bar.png"
+                                 alt="swoldier-fitness"/>
+
+                                 <div class="img-text">
+                                    <h3>swolder fitness</h3>
+                        
+
+                                 <div class="project-links">
+                                    <a><p>source </p><i class="fa-sharp fa-solid fa-code"></i></a>
+                                    <a href="http://127.0.0.1:5500/portafolio/inderx.html#f4" translate="blank"><p>life</p><i class="fa-sharp fa-solid fa-bolt"></i></a>
+                                 </div>
+                              </div>
+                            </div>
+                        
+                            <div class="project-item">
+                                <img src="/public/2.jpg"
+                                 alt="swoldier-fitness"/>
+
+                                 <div class="img-text">
+                                    <h3>swolder fitness</h3>
+                        
+
+                                 <div class="project-links">
+                                    <a><p>source </p><i class="fa-sharp fa-solid fa-code"></i></a>
+                                    <a href="http://127.0.0.1:5500/portafolio/inderx.html#f4" translate="blank"><p>life</p><i class="fa-sharp fa-solid fa-bolt"></i></a>
+                                 </div>
+                              </div> 
+                            </div>
+
+                            <div class="project-item">
+                                <img src="/public/3.jpg"
+                                 alt="swoldier-fitness"/>
+
+                                 <div class="img-text">
+                                    <h3>swolder fitness</h3>
+                        
+
+                                 <div class="project-links">
+                                    <a><p>source </p><i class="fa-sharp fa-solid fa-code"></i></a>
+                                    <a href="http://127.0.0.1:5500/portafolio/inderx.html#f4" translate="blank"><p>life</p><i class="fa-sharp fa-solid fa-bolt"></i></a>
+                                 </div>
+                              </div>     
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </main>
+
+        <footer>
+            <a href=""><i class="fa-brands fa-github"></i></a>
+            <a href=""><i class="fa-solid fa-link"></i></a>
+            <a href=""></a>
+        </footer>
+    
+</body>
+</html>
